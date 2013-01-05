@@ -6,7 +6,13 @@ gem 'rails', '3.2.10'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'devise'
+gem 'oauth'
+gem 'omniauth-evernote'
 
+gem 'pry'
+gem 'json'
+gem 'hashie'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,18 +32,3 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'spork', '~> 1.0rc'
 end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
