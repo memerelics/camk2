@@ -11,6 +11,7 @@ gem 'oauth'
 gem 'omniauth-evernote'
 
 gem 'pry'
+gem 'pry-rails'
 gem 'json'
 gem 'hashie'
 
