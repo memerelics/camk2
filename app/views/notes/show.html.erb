@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Contenthash:</b>
+  <%= @note.contentHash %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @note.title %>
+</p>
+
+<p>
+  <b>Content raw:</b>
+  <%= @note.content_raw %>
+</p>
+
+<p>
+  <b>Content markdown:</b>
+  <%= @note.content_markdown %>
+</p>
+
+<p>
+  <b>Content html:</b>
+  <%= @note.content_html %>
+</p>
+
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>
