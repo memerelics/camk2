@@ -10,7 +10,11 @@
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  <%= link_to "Sign in with EverNote", user_omniauth_authorize_path(:evernote) %>
+  <% if signed_in? %>
+    <%= link_to "Sign out", destroy_user_session_path %>
+  <% else %>
+    <%= link_to "Sign in with EverNote", user_omniauth_authorize_path(:evernote) %>
+  <% end %>
   <%= yield %>
 
 </body>
