@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
