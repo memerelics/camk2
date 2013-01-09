@@ -32,4 +32,5 @@ gem 'jquery-rails'
 group :test, :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'spork', '~> 1.0rc'
+  gem 'fuubar' # usage: --format Fuubar in .rspec
 end
