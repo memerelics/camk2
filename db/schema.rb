@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109174956) do
+ActiveRecord::Schema.define(:version => 20130109175604) do
 
   create_table "notes", :force => true do |t|
     t.string   "guid"
-    t.string   "contentHash"
+    t.string   "content_hash"
     t.string   "title"
     t.text     "content_raw"
     t.text     "content_markdown"
