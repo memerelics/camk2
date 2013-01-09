@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 class NotesController < ApplicationController
+  #TODO authanticate all actions, and display "home" screen.
+  before_filter :authenticate_user!, :only => :sync
+
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.all
+    @notes = Note.all # TODO: sign_in中ユーザのもののみ表示する
 
     respond_to do |format|
       format.html # index.html.erb
@@ -80,5 +83,14 @@ class NotesController < ApplicationController
       format.html { redirect_to notes_url }
       format.json { head :no_content }
     end
+  end
+
+  #   [OK] Evernote Serverにあるものを CaMK2へ
+  # [TODO] CaMK2へ同期済だったが Evernote serverで削除されているもの
+  def sync
+    notebook = "Blog" # TODO user_settings['notebook_name']
+    notes = evernote.notes_in_a_notebook(notebook)
+    Note.store(notes, evernote)
+    redirect_to root_path
   end
 end

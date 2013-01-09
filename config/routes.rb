@@ -9,6 +9,7 @@ Camk2::Application.routes.draw do
   end
 
   resources :notes
+  get 'sync', to: 'notes#sync', as: :evernote_sync
 
   root :to => 'notes#index'
 end

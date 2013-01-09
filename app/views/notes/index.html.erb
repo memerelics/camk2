@@ -1,3 +1,7 @@
+<% if signed_in? %>
+  <%= link_to '同期', evernote_sync_path %>
+<% end %>
+
 <h1>Listing notes</h1>
 
 <table>

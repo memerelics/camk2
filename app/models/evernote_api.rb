@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class EvernoteApi
+  class LostAuth < StandardError; end
 
   attr_accessor :token, :notestore
 
