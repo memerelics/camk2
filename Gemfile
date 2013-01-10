@@ -29,6 +29,7 @@ end
 
 gem 'jquery-rails'
 
+gem 'quiet_assets', :group => :development
 group :test, :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'spork', '~> 1.0rc'
