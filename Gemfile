@@ -36,4 +36,9 @@ group :test, :development do
   gem 'fuubar' # usage: --format Fuubar in .rspec
   gem 'faker'
   gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  # faster Guard
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
 end
