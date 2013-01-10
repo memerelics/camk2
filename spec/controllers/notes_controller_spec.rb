@@ -6,7 +6,10 @@ describe NotesController do
   # Note. As you add validations to Note, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "content_hash" => "MyString" }
+    { "guid" => "xxxxx",
+      "title" => "xxxxx",
+      "content_raw" => "xxxxx",
+      "content_hash" => "MyString" }
   end
 
   # This should return the minimal set of values that should be in the session
