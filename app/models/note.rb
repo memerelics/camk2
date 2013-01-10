@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class Note < ActiveRecord::Base
   attr_accessible :guid, :content_hash, :content_html, :content_markdown, :content_raw, :title
+  validates_presence_of :guid, :content_hash, :content_raw, :title
 
   def self.store(notes, evernote)
     @evernote = evernote # TODO: @evernoteの利用, 正統じゃない気が. よい方法ないか

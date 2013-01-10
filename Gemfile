@@ -34,4 +34,6 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'spork', '~> 1.0rc'
   gem 'fuubar' # usage: --format Fuubar in .rspec
+  gem 'faker'
+  gem 'factory_girl_rails'
 end
