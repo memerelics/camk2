@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "notes/show" do
   before(:each) do
     @note = assign(:note, stub_model(Note,
-      :contentHash => "Content Hash",
+      :content_hash => "Content Hash",
       :title => "Title",
       :content_raw => "MyText",
       :content_markdown => "MyText",

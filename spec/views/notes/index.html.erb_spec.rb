@@ -4,14 +4,14 @@ describe "notes/index" do
   before(:each) do
     assign(:notes, [
       stub_model(Note,
-        :contentHash => "Content Hash",
+        :content_hash => "Content Hash",
         :title => "Title",
         :content_raw => "MyText",
         :content_markdown => "MyText",
         :content_html => "MyText"
       ),
       stub_model(Note,
-        :contentHash => "Content Hash",
+        :content_hash => "Content Hash",
         :title => "Title",
         :content_raw => "MyText",
         :content_markdown => "MyText",

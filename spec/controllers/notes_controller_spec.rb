@@ -6,7 +6,7 @@ describe NotesController do
   # Note. As you add validations to Note, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "contentHash" => "MyString" }
+    { "content_hash" => "MyString" }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -71,14 +71,14 @@ describe NotesController do
       it "assigns a newly created but unsaved note as @note" do
         # Trigger the behavior that occurs when invalid params are submitted
         Note.any_instance.stub(:save).and_return(false)
-        post :create, {:note => { "contentHash" => "invalid value" }}, valid_session
+        post :create, {:note => { "content_hash" => "invalid value" }}, valid_session
         assigns(:note).should be_a_new(Note)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Note.any_instance.stub(:save).and_return(false)
-        post :create, {:note => { "contentHash" => "invalid value" }}, valid_session
+        post :create, {:note => { "content_hash" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -92,8 +92,8 @@ describe NotesController do
         # specifies that the Note created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Note.any_instance.should_receive(:update_attributes).with({ "contentHash" => "MyString" })
-        put :update, {:id => note.to_param, :note => { "contentHash" => "MyString" }}, valid_session
+        Note.any_instance.should_receive(:update_attributes).with({ "content_hash" => "MyString" })
+        put :update, {:id => note.to_param, :note => { "content_hash" => "MyString" }}, valid_session
       end
 
       it "assigns the requested note as @note" do
@@ -114,7 +114,7 @@ describe NotesController do
         note = Note.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Note.any_instance.stub(:save).and_return(false)
-        put :update, {:id => note.to_param, :note => { "contentHash" => "invalid value" }}, valid_session
+        put :update, {:id => note.to_param, :note => { "content_hash" => "invalid value" }}, valid_session
         assigns(:note).should eq(note)
       end
 
@@ -122,7 +122,7 @@ describe NotesController do
         note = Note.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Note.any_instance.stub(:save).and_return(false)
-        put :update, {:id => note.to_param, :note => { "contentHash" => "invalid value" }}, valid_session
+        put :update, {:id => note.to_param, :note => { "content_hash" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end
