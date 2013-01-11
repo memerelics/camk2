@@ -6,4 +6,7 @@ FactoryGirl.define do
     content_hash { Faker::Lorem.characters(40) }
     content_raw { Faker::Lorem.paragraphs.join("\n") }
   end
+
+  # ModelじゃないものはFactory生成できない.
+  # EverNoteの返すefullnoteなど
 end

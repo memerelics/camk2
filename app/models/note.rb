@@ -25,6 +25,7 @@ class Note < ActiveRecord::Base
 
   private
 
+  # return [Evernote::EDAM::Type::Note]
   def self.get_fullnotes(notes)
     raise EvernoteApi::LostAuth unless @evernote
     notes = [notes] unless notes.is_a? Array
