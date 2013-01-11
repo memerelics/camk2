@@ -27,8 +27,7 @@ app/models/evernote_api.rb:
   * [ 51] [TODO] tweak offset and limit
 
 app/models/note.rb:
-  * [  6] [TODO] @evernoteの利用, 正統じゃない気が. よい方法ないか
-  * [ 11] [TODO] 現状全削全insertしているが, guidで引いて存在したら更新するように.
-  * [ 14] [TODO] 既に存在するnoteのcontent_hashが一致すれば更新はないのでskipさせる
-  * [ 15] [TODO] specでencoding挿入テスト => Encoding::UndefinedConversionError: "\xE9" from ASCII-8BIT to UTF-8: INSERT INTO
+  * [  7] [TODO] @evernoteの利用, 正統じゃない気が. よい方法ないか
+  * [ 12] [TODO] 現状全削全insertしているが, guidで引いて存在したら更新するように.
+  * [ 15] [TODO] 既に存在するnoteのcontent_hashが一致すれば更新はないのでskipさせる
 

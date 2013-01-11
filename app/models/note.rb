@@ -13,7 +13,6 @@ class Note < ActiveRecord::Base
 
     fullnotes.each do |fullnote|
       # TODO: 既に存在するnoteのcontent_hashが一致すれば更新はないのでskipさせる
-      # TODO: specでencoding挿入テスト => Encoding::UndefinedConversionError: "\xE9" from ASCII-8BIT to UTF-8: INSERT INTO
       Note.create(
         guid: fullnote.guid,
         content_hash: Digest::SHA1.hexdigest(fullnote.contentHash),
