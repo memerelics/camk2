@@ -90,6 +90,6 @@ class NotesController < ApplicationController
     notebook = "Blog" # TODO user_settings['notebook_name']
     notes = evernote.notes_in_a_notebook(notebook)
     Note.store(notes, evernote, current_user)
-    redirect_to root_path
+    redirect_to :notes
   end
 end
