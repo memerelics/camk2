@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :trackable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :uid, :token, :token_secret
+  attr_accessible :uid, :token, :token_secret, :notebook_name
 
   has_many :notes
 

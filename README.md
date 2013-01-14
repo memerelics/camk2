@@ -18,12 +18,9 @@ TODO
 app/controllers/application_controller.rb:
   * [  7] production mode.
 
-app/controllers/notes_controller.rb:
-  * [ 90] user_settings['notebook_name']
-
 app/models/evernote_api.rb:
   * [ 51] tweak offset and limit
 
 app/models/note.rb:
-  * [ 11] @evernoteが正常にsetできないときは誤って全削してしまわない(raiseで止まる)ことをspecで確認
+  * [ 14] @evernoteが正常にsetできないときは誤って全削してしまわない(raiseで止まる)ことをspecで確認
 

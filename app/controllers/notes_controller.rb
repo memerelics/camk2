@@ -27,7 +27,7 @@ class NotesController < ApplicationController
   #   [OK] Evernote Serverにあるものを CaMK2へ
   # [TODO] CaMK2へ同期済だったが Evernote serverで削除されているもの
   def sync
-    notebook = "Blog" # TODO user_settings['notebook_name']
+    notebook = current_user.notebook_name || "Blog"
     notes = evernote.notes_in_a_notebook(notebook)
     Note.store(notes, evernote, current_user)
     redirect_to :notes
