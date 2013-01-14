@@ -32,7 +32,9 @@ describe Note do
   describe ".store" do
     before do
       Note.stub!(:get_fullnotes).and_return([@efullnote])
-      Note.store("dummynotes", "dummyevernote")
+      user = mock(User)
+      user.stub!(id: 1)
+      Note.store("dummynotes", "dummyevernote", user)
     end
     it { @efullnote.title.encoding.name.should eq "ASCII-8BIT" }
     it { @efullnote.content.encoding.name.should eq "ASCII-8BIT" }
