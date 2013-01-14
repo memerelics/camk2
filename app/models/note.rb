@@ -11,7 +11,6 @@ class Note < ActiveRecord::Base
 
   def self.store(notes, evernote, user)
     @evernote = evernote
-    # TODO: @evernoteが正常にsetできないときは誤って全削してしまわない(raiseで止まる)ことをspecで確認
 
     fullnotes = self.get_fullnotes(notes)
     fullnotes.each do |fullnote|

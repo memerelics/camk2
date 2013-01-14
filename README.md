@@ -21,6 +21,3 @@ app/controllers/application_controller.rb:
 app/models/evernote_api.rb:
   * [ 51] tweak offset and limit
 
-app/models/note.rb:
-  * [ 14] @evernoteが正常にsetできないときは誤って全削してしまわない(raiseで止まる)ことをspecで確認
-
