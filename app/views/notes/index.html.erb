@@ -2,34 +2,16 @@
   <%= link_to '同期', evernote_sync_path %>
 <% end %>
 
-<h1>Listing notes</h1>
-
 <table>
   <tr>
-    <th>Content hash</th>
-    <th>Title</th>
-    <th>Content raw</th>
-    <th>Content markdown</th>
-    <th>Content html</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>タイトル</th>
+    <th>最終更新時刻</th>
   </tr>
 
-<% @notes.each do |note| %>
-  <tr>
-    <td><%= note.content_hash %></td>
-    <td><%= note.title %></td>
-    <td><%= note.content_raw %></td>
-    <td><%= note.content_markdown %></td>
-    <td><%= note.content_html %></td>
-    <td><%= link_to 'Show', note %></td>
-    <td><%= link_to 'Edit', edit_note_path(note) %></td>
-    <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @notes.each do |note| %>
+    <tr>
+      <td><%= link_to note.title, note %></td>
+      <td><%= note.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+    </tr>
+  <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Note', new_note_path %>
