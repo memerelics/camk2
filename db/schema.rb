@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109175604) do
+ActiveRecord::Schema.define(:version => 20130114100358) do
 
   create_table "notes", :force => true do |t|
     t.string   "guid"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20130109175604) do
     t.text     "content_html"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "user_id"
   end
 
   create_table "users", :force => true do |t|

@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 class Note < ActiveRecord::Base
-  attr_accessible :guid, :content_hash, :content_html, :content_markdown, :content_raw, :title
-  validates_presence_of :guid, :content_hash, :content_raw, :title
+  attr_accessible :guid, :user_id, :content_hash, :content_html, :content_markdown, :content_raw, :title
+  validates_presence_of :guid, :user_id, :content_hash, :content_raw, :title
   validates_uniqueness_of :guid
 
-  def self.store(notes, evernote)
+  belongs_to :user
+
+  def self.store(notes, evernote, user)
     @evernote = evernote
     # TODO: @evernoteが正常にsetできないときは誤って全削してしまわない(raiseで止まる)ことをspecで確認
 
@@ -13,6 +15,7 @@ class Note < ActiveRecord::Base
       self.update_with_fullnote(fullnote) and next if note_exists?(fullnote.guid)
       Note.create(
         guid: fullnote.guid,
+        user_id: user.id,
         content_hash: Digest::SHA1.hexdigest(fullnote.contentHash),
         title: fullnote.title.encode('UTF-8', 'UTF-8'),
         content_raw: fullnote.content.encode('UTF-8', 'UTF-8')

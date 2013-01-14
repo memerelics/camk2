@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :uid, :token, :token_secret
 
+  has_many :notes
+
   def self.create_or_update_by_evernote_oauth(auth, signed_in_resource=nil)
     user = User.where(uid: auth.uid).first
     if user.blank?
