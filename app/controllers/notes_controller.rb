@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 class NotesController < ApplicationController
-  #TODO authanticate all actions, and display "home" screen.
-  before_filter :authenticate_user!, :only => :sync
+  before_filter :authenticate_user!
 
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.all # TODO: sign_in中ユーザのもののみ表示する
+    @notes = Note.where(user_id: current_user.id).all
 
     respond_to do |format|
       format.html # index.html.erb
