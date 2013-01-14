@@ -33,6 +33,7 @@ class Note < ActiveRecord::Base
   def raw2markdown!
     self.update_attributes(content_markdown: raw2markdown)
   end
+
   def raw2markdown
     raw = content_raw
     doc = Nokogiri::XML(raw)
@@ -40,10 +41,23 @@ class Note < ActiveRecord::Base
     body_div.children.map{|e| e.name == "br" ? "\n" : e.text }.join
   end
 
-  # TODO: markdown2html
+  def markdown2html!
+    self.update_attributes(content_html: markdown2html)
+  end
+
   def markdown2html
     return nil if content_markdown.blank?
-    content_markdown
+    renderer = MyRedcarpet.new(
+      hard_wrap:          true, # newline to normal br
+      fenced_code_blocks: true, # ```ruby (PHP-markdown style) enabled.
+      no_intra_emphasis:  true, # hoge_fuga_piyo is not emphasis, but one word.
+      autolink:           true, # autolink
+      with_toc_data:      true, # add anchor to h1 etc
+      strikethrough:      true  # ~~hoge~~ => <s>hoge</s>
+    )
+    markdown = Redcarpet::Markdown.new(renderer,
+                                      fenced_code_blocks: true)
+    markdown.render(content_markdown)
   end
 
 
