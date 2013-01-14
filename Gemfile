@@ -18,6 +18,7 @@ gem 'json'
 gem 'hashie'
 
 # -> publish
+gem 'mechanize'
 gem 'nokogiri'
 gem 'redcarpet'
 
