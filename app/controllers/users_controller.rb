@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   end
 
   def update_settings
-    current_user.update_attributes(notebook_name: params[:notebook_name])
+    current_user.update_attributes!(notebook_name: params[:notebook_name])
+    flash[:success] = I18n.t 'updated'
     render :settings
   end
 

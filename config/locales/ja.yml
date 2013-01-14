@@ -1,4 +1,5 @@
 ja:
+  updated: "更新しました."
   notes:
     sync:
       notfound: "Notebook名 \"%{name}\" には同期可能なNoteが存在しません. 設定ページからNotebookを変更して下さい."
