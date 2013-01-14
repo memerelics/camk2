@@ -5,6 +5,13 @@ FactoryGirl.define do
     title { Faker::Lorem.sentence }
     content_hash { Faker::Lorem.characters(40) }
     content_raw { Faker::Lorem.paragraphs.join("\n") }
+    user
+  end
+
+  factory :user do
+    uid { "12345" }
+    token { "xxxxxxxxx" }
+    token_secret { "........." }
   end
 
   # ModelじゃないものはFactory生成できない.
