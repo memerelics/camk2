@@ -31,6 +31,8 @@ end
 
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
+gem 'less-rails' # when using less type bootstrap
+gem 'therubyracer'
 
 group :development do
   gem 'quiet_assets'
