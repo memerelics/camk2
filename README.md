@@ -27,7 +27,4 @@ app/models/evernote_api.rb:
   * [ 51] [TODO] tweak offset and limit
 
 app/models/note.rb:
-  * [  7] [TODO] @evernoteの利用, 正統じゃない気が. よい方法ないか
-  * [ 12] [TODO] 現状全削全insertしているが, guidで引いて存在したら更新するように.
-  * [ 15] [TODO] 既に存在するnoteのcontent_hashが一致すれば更新はないのでskipさせる
-
+  * [  9] [TODO] @evernoteが正常にsetできないときは誤って全削してしまわない(raiseで止まる)ことをspecで確認
