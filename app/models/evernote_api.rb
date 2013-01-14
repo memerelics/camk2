@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class EvernoteApi
   class LostAuth < StandardError; end
+  class NotebookNotFound < StandardError; end
 
   attr_accessor :token, :notestore
 
@@ -39,7 +40,7 @@ class EvernoteApi
   end
 
   def notebook_named(name)
-    notebooks.select{|nb| nb.name == name }.first
+    notebooks.select{|nb| nb.name == name }.first || raise(NotebookNotFound)
   end
 
   def notes_in_a_notebook(name)
