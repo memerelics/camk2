@@ -6,6 +6,9 @@ class Note < ActiveRecord::Base
 
   belongs_to :user
 
+  #        Class methods
+  ###################################
+
   def self.store(notes, evernote, user)
     @evernote = evernote
     # TODO: @evernoteが正常にsetできないときは誤って全削してしまわない(raiseで止まる)ことをspecで確認
@@ -23,7 +26,31 @@ class Note < ActiveRecord::Base
     end
   end
 
+
+  #        instance methods
+  ###################################
+
+  def raw2markdown!
+    self.update_attributes(content_markdown: raw2markdown)
+  end
+  def raw2markdown
+    raw = content_raw
+    doc = Nokogiri::XML(raw)
+    body_div = (doc/"en-note"/"div").first
+    body_div.children.map{|e| e.name == "br" ? "\n" : e.text }.join
+  end
+
+  # TODO: markdown2html
+  def markdown2html
+    return nil if content_markdown.blank?
+    content_markdown
+  end
+
+
   private
+
+  #        Class methods
+  ###################################
 
   # return [Evernote::EDAM::Type::Note]
   def self.get_fullnotes(notes)

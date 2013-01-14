@@ -17,6 +17,10 @@ gem 'pry-rails'
 gem 'json'
 gem 'hashie'
 
+# -> publish
+gem 'nokogiri'
+gem 'redcarpet'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
