@@ -2,19 +2,17 @@
 class Adapters::Livedoor
   attr_accessor :agent, :livedoor_id, :password
 
-  # OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-  # I_KNOW_THAT_OPENSSL_VERIFY_PEER_EQUALS_VERIFY_NONE_IS_WRONG = nil
+  attr_accessor :agent, :livedoor_id, :password
 
   def initialize(livedoor_id, password)
     @livedoor_id = livedoor_id
     @password = password
     @agent = Mechanize.new {|agent|
       agent.user_agent = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0; FujitsuToshibaMobileCommun; IS12T; KDDI)'
+      agent.ssl_version, agent.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE
     }
-    #@agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
   end
 
-  #TODO: solve 'Errno::ECONNRESET: Connection reset by peer - SSL_connect'
   def post(note)
     agent.get("https://member.livedoor.com/login/") {|page|
       form = page.form_with(name: "loginForm")
