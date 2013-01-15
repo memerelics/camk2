@@ -20,6 +20,7 @@ app/controllers/application_controller.rb:
 
 app/models/adapters/livedoor.rb:
   * [ 32] bodyとbody_moreに適当に分割する
+  * [ 35] body_privateにguidとcontent_hashを入れて, 同期管理に使う
 
 app/models/evernote_api.rb:
   * [ 52] tweak offset and limit

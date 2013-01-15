@@ -32,6 +32,7 @@ class Adapters::Livedoor
       # TODO: bodyとbody_moreに適当に分割する
       article_form.body = "<p>hhhhhhhhhhhhhhh</p>"
       article_form.body_more = note.content_html
+      # TODO: body_privateにguidとcontent_hashを入れて, 同期管理に使う
       article_form.body_private = ""
 
       # 記事投稿
