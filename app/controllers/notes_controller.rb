@@ -30,6 +30,7 @@ class NotesController < ApplicationController
     notebook = current_user.notebook_name || "Blog"
     notes = evernote.notes_in_a_notebook(notebook)
     Note.store(notes, evernote, current_user)
+    flash[:success] = I18n.t 'notes.sync.success', name: notebook
   rescue EvernoteApi::NotebookNotFound
     flash[:error] = I18n.t 'notes.sync.notfound', name: notebook
   ensure
