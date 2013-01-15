@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Adapters::Livedoor
-  attr_accessor :agent, :livedoor_id, :password
+  class InvalidLogin < StandardError; end
 
   attr_accessor :agent, :livedoor_id, :password
 
@@ -15,17 +15,22 @@ class Adapters::Livedoor
 
   def post(note)
     agent.get("https://member.livedoor.com/login/") {|page|
+
+      # ログイン処理
       form = page.form_with(name: "loginForm")
       form.livedoor_id = livedoor_id
       form.password = password
       page2 = form.submit
+      # ログイン失敗時
+      raise Adapters::Livedoor::InvalidLogin if page2.form_with(name: "loginForm")
+
       cms_page =  page2.link_with(href: /r\/user_blogcms/).click
       edit_page = cms_page.link_with(href: /\/blog\/mastertest\/article\/edit/).click
       article_form = edit_page.form_with(name: "ArticleForm")
       # 隠されたtextareaにpreview部分, 続きを読む(ここまでで公開記事全体), プライベートの3つに分けて登録
       article_form.title = note.title
       # TODO: bodyとbody_moreに適当に分割する
-      article_form.body = note.content_html
+      article_form.body = "<p>hhhhhhhhhhhhhhh</p>"
       article_form.body_more = note.content_html
       article_form.body_private = ""
 

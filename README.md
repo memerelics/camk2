@@ -18,6 +18,9 @@ TODO
 app/controllers/application_controller.rb:
   * [  7] production mode.
 
+app/models/adapters/livedoor.rb:
+  * [ 32] bodyとbody_moreに適当に分割する
+
 app/models/evernote_api.rb:
-  * [ 51] tweak offset and limit
+  * [ 52] tweak offset and limit
 
