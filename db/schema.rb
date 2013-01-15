@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20130114155306) do
 
   create_table "notes", :force => true do |t|
+    t.string   "guid"
+    t.string   "content_hash"
     t.string   "title"
     t.text     "content_raw"
     t.text     "content_markdown"
     t.text     "content_html"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.string   "guid"
-    t.string   "content_hash"
     t.string   "user_id"
   end
 
