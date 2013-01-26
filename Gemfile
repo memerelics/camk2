@@ -20,6 +20,7 @@ gem 'hashie'
 # -> publish
 gem 'mechanize'
 gem 'nokogiri'
+gem 'wsse'
 gem 'redcarpet'
 
 # Gems used only for assets and not required
