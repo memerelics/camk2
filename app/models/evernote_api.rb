@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 class EvernoteApi
-  class LostAuth < StandardError; end
   class NotebookNotFound < StandardError; end
   class TagNotFound < StandardError; end
 
@@ -54,11 +53,16 @@ class EvernoteApi
     return notelist.notes
   end
 
-  def get_tag_names(guids); guids.map{|guid| get_tag_name(guid) }; end
   def get_tag_name(guid)
     self.notestore.getTag(self.token, guid).name
   rescue Evernote::EDAM::Error::EDAMUserException
     raise TagNotFound, $!.message
+  end
+
+  def extract_tagstrings(fullnote)
+    return nil if fullnote.tagGuids.nil?
+    # EverNoteの仕様上,(カンマ)はtag名に含まれないので, こちらでも区切り文字に利用する
+    fullnote.tagGuids.map{|guid| get_tag_name(guid) }
   end
 
 end

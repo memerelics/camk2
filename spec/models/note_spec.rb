@@ -12,7 +12,8 @@ describe Note do
                      :contentHash => "S\x11eAL9\xB4\xAB\xFF\xC1\x8E6]{\xEA*",
                      :content => "コンテンツ".force_encoding('ASCII-8BIT'),
                      :tagGuids => [dummy_guid, dummy_guid] )
-
+    @evernote = mock(EvernoteApi)
+    @evernote.stub!(extract_tagstrings: ["tagA","tagB","tagC"])
   end
 
   describe 'validations' do
@@ -41,9 +42,7 @@ describe Note do
       Note.stub!(:get_fullnotes).and_return([@efullnote])
       user = mock(User)
       user.stub!(id: 1)
-      evernote = mock(EvernoteApi)
-      evernote.stub!(get_tag_names: ["tagA","tagB","tagC"])
-      Note.store("dummynotes", evernote, user)
+      Note.store("dummynotes", @evernote, user)
     end
     it { @efullnote.title.encoding.name.should eq "ASCII-8BIT" }
     it { @efullnote.content.encoding.name.should eq "ASCII-8BIT" }
@@ -58,7 +57,7 @@ describe Note do
   describe ".update_with_fullnote" do
     describe "there's no guid-related note in DB" do
       before { Note.destroy_all }
-      it {expect{Note.update_with_fullnote(@efullnote)}.to \
+      it {expect{Note.update_with_fullnote(@efullnote, @evernote)}.to \
         raise_error(ActiveRecord::RecordNotFound) }
     end
     describe "has same content_hash" do
@@ -69,7 +68,7 @@ describe Note do
       end
       it "should not update" do
         expect {
-          Note.update_with_fullnote(@fullnote)
+          Note.update_with_fullnote(@fullnote, @evernote)
         }.to_not change{ Note.first.content_hash }
       end
     end
@@ -81,7 +80,7 @@ describe Note do
       end
       it "should update" do
         expect {
-          Note.update_with_fullnote(@fullnote)
+          Note.update_with_fullnote(@fullnote, @evernote)
         }.to change{ Note.first.content_hash }.
           from(Digest::SHA1.hexdigest("xyz")).to(Digest::SHA1.hexdigest("xyz2"))
       end

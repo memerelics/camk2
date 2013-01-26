@@ -10,15 +10,13 @@ class Note < ActiveRecord::Base
   ###################################
 
   def self.store(notes, evernote, user)
-    @evernote = evernote
-
-    fullnotes = self.get_fullnotes(notes)
+    fullnotes = self.get_fullnotes(notes, evernote)
     fullnotes.each do |fullnote|
       self.update_with_fullnote(fullnote) and next if note_exists?(fullnote.guid)
       Note.create(
         guid: fullnote.guid,
         user_id: user.id,
-        stags: self.extract_tagstrings(fullnote),
+        stags: evernote.extract_tagstrings(fullnote),
         content_hash: Digest::SHA1.hexdigest(fullnote.contentHash),
         title: fullnote.title.encode('UTF-8', 'UTF-8'),
         content_raw: fullnote.content.encode('UTF-8', 'UTF-8')
@@ -73,10 +71,9 @@ class Note < ActiveRecord::Base
 
   # return [Evernote::EDAM::Type::Note]
   def self.get_fullnotes(notes)
-    raise EvernoteApi::LostAuth unless @evernote
     notes = [notes] unless notes.is_a? Array
     notes.map{|note|
-      @evernote.notestore.getNote(@evernote.token, note.guid, true, true, false, false)
+      evernote.notestore.getNote(evernote.token, note.guid, true, true, false, false)
     }
   end
 
@@ -88,11 +85,11 @@ class Note < ActiveRecord::Base
     self.where(guid: guid).first ? true : false
   end
 
-  def self.update_with_fullnote(fullnote)
+  def self.update_with_fullnote(fullnote, evernote)
     note = self.find_by_guid(fullnote.guid)
 
     # tagの更新はcontent_hashを変更しないため個別にチェックする必要がある
-    if (stags = self.extract_tagstrings(fullnote)) != note.stags
+    if (stags = evernote.extract_tagstrings(fullnote)) != note.stags
       note.update_attributes(stags: stags)
     end
     # 既に存在するnoteのcontent_hashが一致すれば更新はないのでskip
@@ -104,13 +101,4 @@ class Note < ActiveRecord::Base
       content_raw: fullnote.content.encode('UTF-8', 'UTF-8')
     })
   end
-
-  def self.extract_tagstrings(fullnote)
-    raise EvernoteApi::LostAuth unless @evernote
-    return nil if fullnote.tagGuids.nil?
-
-    # EverNoteの仕様上,(カンマ)はtag名に含まれないので, こちらでも区切り文字に利用する
-    @evernote.get_tag_names(fullnote.tagGuids).join(",")
-  end
-
 end
