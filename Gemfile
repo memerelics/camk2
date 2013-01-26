@@ -16,6 +16,7 @@ gem 'pry'
 gem 'pry-rails'
 gem 'json'
 gem 'hashie'
+gem 'awesome_print'
 
 # -> publish
 gem 'mechanize'
