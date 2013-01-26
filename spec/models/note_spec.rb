@@ -31,6 +31,9 @@ describe Note do
     it "is invalid without title" do
       FactoryGirl.build(:note, title: nil).should_not be_valid
     end
+    it "allow blank stags" do
+      FactoryGirl.build(:note, stags: nil).should be_valid
+    end
   end
 
   describe ".store" do
