@@ -19,8 +19,11 @@ app/controllers/application_controller.rb:
   * [  7] production mode.
 
 app/models/adapters/livedoor.rb:
-  * [ 32] bodyとbody_moreに適当に分割する
-  * [ 35] body_privateにguidとcontent_hashを入れて, 同期管理に使う
+  * [ 46] implement Adapters::Livedoor#resource
+  * [ 62] <app:control> <app:draft>yes</app:draft> </app:control>
+  * [ 68] EverNote tag => Livedoor blog category
+  * [ 73] bodyとbody_moreに適当に分割する
+  * [ 75] body_privateにguidとcontent_hashを入れて, 同期管理に使う
 
 app/models/evernote_api.rb:
   * [ 52] tweak offset and limit

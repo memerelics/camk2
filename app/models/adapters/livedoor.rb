@@ -43,7 +43,7 @@ class Adapters::Livedoor
   def images     ; resources("image")    ; end
 
   def resource(name, id)
-    # TODO
+    # TODO implement Adapters::Livedoor#resource
   end
 
   def article(id) ; resource("article", id)  ; end
