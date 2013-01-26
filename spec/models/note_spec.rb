@@ -2,12 +2,16 @@
 require 'spec_helper'
 
 describe Note do
+  def dummy_guid
+    [8,4,4,4,12].map{|num| Faker::Lorem.characters(num) }.join("-")
+  end
   before do
     @efullnote = mock(Evernote::EDAM::Type::Note)
-    @efullnote.stub!(:guid =>  [8,4,4,4,12].map{|num| Faker::Lorem.characters(num) }.join("-"),
+    @efullnote.stub!(:guid => dummy_guid,
                      :title => "タイトル".force_encoding('ASCII-8BIT'),
                      :contentHash => "S\x11eAL9\xB4\xAB\xFF\xC1\x8E6]{\xEA*",
-                     :content => "コンテンツ".force_encoding('ASCII-8BIT') )
+                     :content => "コンテンツ".force_encoding('ASCII-8BIT'),
+                     :tagGuids => [dummy_guid, dummy_guid] )
 
   end
 
@@ -34,7 +38,9 @@ describe Note do
       Note.stub!(:get_fullnotes).and_return([@efullnote])
       user = mock(User)
       user.stub!(id: 1)
-      Note.store("dummynotes", "dummyevernote", user)
+      evernote = mock(EvernoteApi)
+      evernote.stub!(get_tag_names: ["tagA","tagB","tagC"])
+      Note.store("dummynotes", evernote, user)
     end
     it { @efullnote.title.encoding.name.should eq "ASCII-8BIT" }
     it { @efullnote.content.encoding.name.should eq "ASCII-8BIT" }
@@ -68,7 +74,7 @@ describe Note do
       before do
         FactoryGirl.create(:note, guid: "abcd", content_hash: Digest::SHA1.hexdigest("xyz"))
         @fullnote = mock(Evernote::EDAM::Type::Note)
-        @fullnote.stub!(guid: "abcd", contentHash: "xyz2", title: "hoge", content: "hoge")
+        @fullnote.stub!(guid: "abcd", contentHash: "xyz2", title: "hoge", content: "hoge", tagGuids: [dummy_guid, dummy_guid])
       end
       it "should update" do
         expect {
