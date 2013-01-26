@@ -2,6 +2,7 @@
 class EvernoteApi
   class LostAuth < StandardError; end
   class NotebookNotFound < StandardError; end
+  class TagNotFound < StandardError; end
 
   attr_accessor :token, :notestore
 
@@ -51,6 +52,13 @@ class EvernoteApi
     # findNotesはメタ情報(startIndex, totalNotes, updateCount(?))付きの検索結果を返す.
     notelist = self.notestore.findNotes(self.token, f, 0, 10) # TODO: tweak offset and limit
     return notelist.notes
+  end
+
+  def get_tag_names(guids); guids.map{|guid| get_tag_name(guid) }; end
+  def get_tag_name(guid)
+    self.notestore.getTag(self.token, guid).name
+  rescue Evernote::EDAM::Error::EDAMUserException
+    raise TagNotFound, $!.message
   end
 
 end

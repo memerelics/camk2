@@ -11,18 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114155306) do
+ActiveRecord::Schema.define(:version => 20130126133041) do
 
   create_table "notes", :force => true do |t|
-    t.string   "guid"
-    t.string   "content_hash"
     t.string   "title"
     t.text     "content_raw"
     t.text     "content_markdown"
     t.text     "content_html"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "guid"
+    t.string   "content_hash"
     t.string   "user_id"
+    t.string   "stags"
   end
 
   create_table "users", :force => true do |t|

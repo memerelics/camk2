@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Note < ActiveRecord::Base
-  attr_accessible :guid, :user_id, :content_hash, :content_html, :content_markdown, :content_raw, :title
+  attr_accessible :guid, :user_id, :content_hash, :content_html, :content_markdown, :content_raw, :title, :stags
   validates_presence_of :guid, :user_id, :content_hash, :content_raw, :title
   validates_uniqueness_of :guid
 
@@ -18,6 +18,7 @@ class Note < ActiveRecord::Base
       Note.create(
         guid: fullnote.guid,
         user_id: user.id,
+        stags: self.extract_tagstrings(fullnote),
         content_hash: Digest::SHA1.hexdigest(fullnote.contentHash),
         title: fullnote.title.encode('UTF-8', 'UTF-8'),
         content_raw: fullnote.content.encode('UTF-8', 'UTF-8')
@@ -59,6 +60,11 @@ class Note < ActiveRecord::Base
     markdown.render(content_markdown)
   end
 
+  def tags
+    return nil if stags.nil?
+    stags.split(",")
+  end
+
 
   private
 
@@ -85,6 +91,10 @@ class Note < ActiveRecord::Base
   def self.update_with_fullnote(fullnote)
     note = self.find_by_guid(fullnote.guid)
 
+    # tagの更新はcontent_hashを変更しないため個別にチェックする必要がある
+    if (stags = self.extract_tagstrings(fullnote)) != note.stags
+      note.update_attributes(stags: stags)
+    end
     # 既に存在するnoteのcontent_hashが一致すれば更新はないのでskip
     return if note.content_hash == Digest::SHA1.hexdigest(fullnote.contentHash)
 
@@ -93,6 +103,14 @@ class Note < ActiveRecord::Base
       title: fullnote.title.encode('UTF-8', 'UTF-8'),
       content_raw: fullnote.content.encode('UTF-8', 'UTF-8')
     })
+  end
+
+  def self.extract_tagstrings(fullnote)
+    raise EvernoteApi::LostAuth unless @evernote
+    return nil if fullnote.tagGuids.nil?
+
+    # EverNoteの仕様上,(カンマ)はtag名に含まれないので, こちらでも区切り文字に利用する
+    @evernote.get_tag_names(fullnote.tagGuids).join(",")
   end
 
 end
