@@ -129,6 +129,9 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.3.1)
+    pry-doc (0.4.4)
+      pry (>= 0.9.9.6)
+      yard (~> 0.8.1)
     pry-rails (0.2.2)
       pry (>= 0.9.10)
     quiet_assets (1.0.1)
@@ -218,6 +221,7 @@ GEM
       rack (>= 1.0)
     webrobots (0.0.13)
     wsse (0.0.2)
+    yard (0.8.4.1)
 
 PLATFORMS
   ruby
@@ -241,6 +245,7 @@ DEPENDENCIES
   oauth
   omniauth-evernote
   pry
+  pry-doc
   pry-rails
   quiet_assets
   rails (= 3.2.11)
