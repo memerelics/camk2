@@ -4,6 +4,8 @@ class Adapters::Livedoor
   class InvalidLogin < StandardError; end
   class ResponseError < StandardError; end
 
+  # TODO: adapter先の記事をfetchして逆変換, 改修元ソースを取得できるように
+
   # Atom Publishing Protocol 日本語訳
   #   http://www.ricoh.co.jp/src/rd/webtech/rfc5023_ja.html
   #
