@@ -5,7 +5,10 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.where(user_id: current_user.id).all
+    @notes = Note.where(user_id: current_user.id)
+
+    # filter notes
+    @notes = @notes.joins(:tags).merge(Tag.named(white_params["tag"])) if white_params["tag"]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,5 +38,10 @@ class NotesController < ApplicationController
     flash[:error] = I18n.t 'notes.sync.notfound', name: notebook
   ensure
     redirect_to :notes
+  end
+
+  private
+  def white_params
+    params.select{|k,v| Note::SEARCHABLES.include?(k) }
   end
 end

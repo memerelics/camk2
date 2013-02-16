@@ -62,3 +62,12 @@ class EvernoteApi
   end
 
 end
+
+# APIをwrapしたクラスを新しく定義したいところ
+class Evernote::EDAM::Type::Note
+  def tag_names(evernote)
+    return [] if self.tagGuids.nil?
+    evernote.get_tag_names(self.tagGuids)
+  end
+end
+

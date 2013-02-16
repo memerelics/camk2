@@ -12,7 +12,7 @@ describe Note do
                      :contentHash => "S\x11eAL9\xB4\xAB\xFF\xC1\x8E6]{\xEA*",
                      :content => "コンテンツ".force_encoding('ASCII-8BIT'),
                      :tagGuids => [dummy_guid, dummy_guid] )
-
+    @efullnote.stub!(:tag_names => [])
   end
 
 
@@ -59,9 +59,10 @@ describe Note do
       note = FactoryGirl.create(:note, guid: "abcd", content_hash: Digest::SHA1.hexdigest("xyz"))
       note.stub!(stags: 'same')
       @fullnote = mock(Evernote::EDAM::Type::Note)
+      @fullnote.stub!(tag_names: [])
     end
     context "there's no guid-related note in DB" do
-      it "raise" do 
+      it "raise" do
         Note.destroy_all
         expect{Note.update_with_fullnote(@efullnote)}.to raise_error(ActiveRecord::RecordNotFound)
       end

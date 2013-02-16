@@ -5,12 +5,18 @@
 <table>
   <tr>
     <th>タイトル</th>
+    <th>タグ</th>
     <th>最終更新時刻</th>
   </tr>
 
   <% @notes.each do |note| %>
     <tr>
       <td><%= link_to note.title, note %></td>
+      <td>
+        <% note.tags && note.tags.each do |tag|  %>
+          <%= link_to tag.name, notes_path(tag: tag.name) %>
+        <% end %>
+      </td>
       <td><%= note.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
     </tr>
   <% end %>
