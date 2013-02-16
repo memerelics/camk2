@@ -8,6 +8,10 @@ FactoryGirl.define do
     user
   end
 
+  factory :tag do
+    name "tag1"
+  end
+
   factory :user do
     uid { "12345" }
     token { "xxxxxxxxx" }
