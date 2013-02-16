@@ -3,8 +3,8 @@
 <% end %>
 <hr />
 <% if params["tag"].present? %>
-  <%= link_to "全件表示", notes_path, class: 'btn btn-mini' %>
   <span class="label"><%= params["tag"] %></span>
+  <a class="close" style="float: none;" href=<%= notes_path %>>&times;</a>
 <% end %>
 
 <table>
