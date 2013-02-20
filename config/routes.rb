@@ -8,8 +8,12 @@ Camk2::Application.routes.draw do
     get 'sign_in', :to => 'users#welcome'
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
-  get 'settings', :to => 'users#settings'
-  post 'settings', :to => 'users#update_settings'
+
+  namespace :settings, module: nil do
+    get  '/'        => 'users#settings'
+    post '/'        => 'users#update_settings'
+    post 'adapters' => 'users#update_adapters'
+  end
 
   resources :notes
   get 'sync', to: 'notes#sync', as: :evernote_sync

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'builder'
-class Adapters::Livedoor
+class Adapters::Livedoor < Adapters::Base
   class InvalidLogin < StandardError; end
   class ResponseError < StandardError; end
 
