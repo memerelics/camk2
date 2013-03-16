@@ -12,17 +12,21 @@
 
 <p>
   <b>Content raw:</b>
-  <%= @note.content_raw %>
+  <%= truncate @note.content_raw, length: 300 %>
 </p>
+
+<%= button_to "raw->markdown", raw2markdown_note_path(@note) %>
 
 <p>
   <b>Content markdown:</b>
-  <%= @note.content_markdown %>
+  <%= truncate @note.content_markdown, length: 300 %>
 </p>
+
+<%= button_to "markdown->html", markdown2html_note_path(@note) %>
 
 <p>
   <b>Content html:</b>
-  <%= @note.content_html %>
+  <%= truncate @note.content_html, length: 300 %>
 </p>
 
 

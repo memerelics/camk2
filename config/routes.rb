@@ -11,7 +11,10 @@ Camk2::Application.routes.draw do
   get 'settings', :to => 'users#settings'
   post 'settings', :to => 'users#update_settings'
 
-  resources :notes
+  resources :notes do
+    post 'raw2markdown', on: :member
+    post 'markdown2html', on: :member
+  end
   get 'sync', to: 'notes#sync', as: :evernote_sync
 
   root :to => 'users#welcome'

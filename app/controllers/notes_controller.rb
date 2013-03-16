@@ -27,6 +27,18 @@ class NotesController < ApplicationController
     end
   end
 
+  def raw2markdown
+    note = Note.find(params[:id])
+    note.update_attribute(:content_markdown, note.raw2markdown)
+    redirect_to note_path
+  end
+
+  def markdown2html
+    note = Note.find(params[:id])
+    note.update_attribute(:content_html, note.markdown2html)
+    redirect_to note_path
+  end
+
   #   [OK] Evernote Serverにあるものを CaMK2へ
   # [TODO] CaMK2へ同期済だったが Evernote serverで削除されているもの
   def sync
