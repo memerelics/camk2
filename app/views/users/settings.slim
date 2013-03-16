@@ -1,0 +1,8 @@
+.row-fluid
+  .span6.offset3
+    = form_tag settings_path do
+      = label_tag :notebook_name, "連携Notebook名"
+      = text_field_tag :notebook_name, (current_user.notebook_name || "Blog"), class: 'span3'
+      br /
+      = submit_tag "更新", class: 'btn'
+

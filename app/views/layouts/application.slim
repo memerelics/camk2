@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= content_for?(:title) ? yield(:title) : "Camk2"
+    = stylesheet_link_tag "application", :media => "all"
+    = csrf_meta_tags
+
+  body
+    .navbar.navbar-fluid-top
+      .navbar-inner
+        .container-fluid
+          / fluid短縮時のpulldown button
+          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+           span.icon-bar
+           span.icon-bar
+           span.icon-bar
+          a.brand href="/notes" Camk2
+          .container-fluid.nav-collapse
+            ul.nav.pull-right
+              - if signed_in?
+                li= link_to "設定", settings_path
+                li= link_to "Sign out", destroy_user_session_path
+              - else
+                li= link_to "Sign in with EverNote", user_omniauth_authorize_path(:evernote)
+
+    .container-fluid
+      .row-fluid
+        .span9
+          = bootstrap_flash
+          = yield
+
+    /! Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

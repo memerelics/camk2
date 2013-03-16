@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'devise'
 gem 'oauth'
 gem 'omniauth-evernote'
+gem 'slim'
 
 gem 'pry'
 gem 'pry-doc'
