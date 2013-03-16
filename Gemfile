@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Rails should be higher than  3.2.11,
 # because of vulnerability in parameter parsing in the Action Pack framework
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
