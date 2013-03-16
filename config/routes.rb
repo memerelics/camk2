@@ -15,7 +15,11 @@ Camk2::Application.routes.draw do
     post 'adapters' => 'users#update_adapters'
   end
 
-  resources :notes
+  resources :notes do
+    post 'raw2markdown', on: :member
+    post 'markdown2html', on: :member
+    post 'publish', on: :member
+  end
   get 'sync', to: 'notes#sync', as: :evernote_sync
 
   root :to => 'users#welcome'

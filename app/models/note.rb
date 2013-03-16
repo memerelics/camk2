@@ -40,19 +40,11 @@ class Note < ActiveRecord::Base
   #        instance methods
   ###################################
 
-  def raw2markdown!
-    self.update_attributes(content_markdown: raw2markdown)
-  end
-
   def raw2markdown
     raw = content_raw
     doc = Nokogiri::XML(raw)
     body_div = (doc/"en-note"/"div").first
     body_div.children.map{|e| e.name == "br" ? "\n" : e.text }.join
-  end
-
-  def markdown2html!
-    self.update_attributes(content_html: markdown2html)
   end
 
   def markdown2html

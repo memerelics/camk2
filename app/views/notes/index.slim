@@ -1,0 +1,22 @@
+- if signed_in?
+  = link_to '同期', evernote_sync_path, class: 'btn btn-success'
+
+hr /
+
+- if params["tag"].present?
+  span.label= params["tag"]
+  = link_to "&times;", notes_path, class: 'close', style: "float: none;"
+
+table
+  tr
+    th タイトル
+    th タグ
+    th 最終更新時刻
+  - @notes.each do |note|
+    tr
+      td= link_to note.title, note
+      td
+        - note.tags && note.tags.each do |tag|
+          = link_to tag.name, notes_path(tag: tag.name), class: 'btn btn-mini'
+      td= note.updated_at.strftime("%Y-%m-%d %H:%M")
+

@@ -1,0 +1,31 @@
+p id="notice"
+  = notice
+
+p
+  b content_hash:
+  = @note.content_hash
+
+p
+  b Title:
+  = @note.title
+
+p
+  b Content raw:
+  = truncate @note.content_raw, length: 300
+  = button_to "raw->markdown", raw2markdown_note_path(@note)
+
+
+p
+  b Content markdown:
+  = truncate @note.content_markdown, length: 300
+  = button_to "markdown->html", markdown2html_note_path(@note)
+
+p
+  b Content html:
+  = truncate @note.content_html, length: 300
+
+= form_tag publish_note_path(@note) do
+  / select_tag :adapter, options_for_select(, current_user.default_adapter)
+  = submit_tag "post"
+
+= link_to 'Back', notes_path
