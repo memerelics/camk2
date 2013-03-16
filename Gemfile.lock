@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:memerelics/evernote-sdk-ruby.git
+  revision: 90423b43dfecaa2d26f62cac54287192150b52b8
+  branch: fix_class_variables_toplevel_access
+  specs:
+    evernote-thrift (1.23.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,7 +63,6 @@ GEM
     domain_name (0.5.7)
       unf (~> 0.0.3)
     erubis (2.7.0)
-    evernote-thrift (1.23.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -240,6 +246,7 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 3.2.1)
   devise
+  evernote-thrift!
   factory_girl_rails
   faker
   fuubar
