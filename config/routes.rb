@@ -12,7 +12,10 @@ Camk2::Application.routes.draw do
   namespace :settings, module: nil do
     get  '/'        => 'users#settings'
     post '/'        => 'users#update_settings'
-    post 'adapters' => 'users#update_adapters'
+  end
+
+  namespace :adapters do
+    resource :livedoor
   end
 
   resources :notes do

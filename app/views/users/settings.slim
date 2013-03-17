@@ -8,13 +8,29 @@
 
     a.btn href="#adapter-livedoor" data-toggle="modal" Launch demo modal
 
+  - if @adapters
+    .span6.offset3
+      hr /
+      h3 Your Adapters
+      table.table.table-striped.table-bordered
+        tr
+          th created_at
+          th Type
+          th service_id
+          th api_key
+        - @adapters.each do |adapter|
+          tr
+            td= adapter.created_at || "--"
+            td= adapter._type      || "--"
+            td= adapter.service_id || "--"
+            td= adapter.api_key    || "--"
 
 #adapter-livedoor.modal.hide
   .modal-header
     button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
     h3 Livedoorブログ設定
   .modal-body
-    = form_tag settings_adapters_path do
+    = form_tag adapters_livedoor_path do
       = text_field_tag :id, "", placeholder: "Livedoor ID"
       = text_field_tag :api_key, "", placeholder: "API KEY"
       br /

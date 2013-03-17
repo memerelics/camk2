@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def welcome
   end
   def settings
-    @adapter = Adapters::Livedoor.new($secret.livedoor.id, $secret.livedoor.api_key)
+    @adapters = current_user.adapters
   end
 
   def update_settings
@@ -13,10 +13,4 @@ class UsersController < ApplicationController
     flash[:success] = I18n.t 'updated'
     render :settings
   end
-
-  def update_adapters
-    binding.pry
-    # current_user.update_attributes!()
-  end
-
 end

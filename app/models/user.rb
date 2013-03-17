@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   attr_accessible :uid, :token, :token_secret, :notebook_name
 
   has_many :notes
-  has_many :adapters
+  has_many :adapters, class_name: 'Adapters::Base'
 
   def self.create_or_update_by_evernote_oauth(auth, signed_in_resource=nil)
     user = User.where(uid: auth.uid).first
