@@ -16,6 +16,9 @@ Camk2::Application.routes.draw do
 
   namespace :adapters do
     resource :livedoor
+    resource :hatena_diary
+    resource :hatena_blog
+    resource :qiita
   end
 
   resources :notes do
