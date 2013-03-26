@@ -29,3 +29,5 @@ app/models/adapters/livedoor.rb:
 app/models/evernote_api.rb:
   * [ 52] tweak offset and limit
 
+others:
+  * OAuthConsumer with Logging
