@@ -18,12 +18,14 @@
           th Type
           th service_id
           th api_key
+          th
         - @adapters.each do |adapter|
           tr
             td= adapter.created_at || "--"
             td= adapter._type      || "--"
             td= adapter.service_id || "--"
             td= adapter.api_key    || "--"
+            td &times;
 
 #adapter-livedoor.modal.hide
   .modal-header
