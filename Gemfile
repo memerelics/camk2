@@ -11,7 +11,7 @@ gem 'sqlite3'
 gem 'devise'
 gem 'oauth'
 gem 'omniauth-evernote'
-gem 'evernote-thrift', git: 'git@github.com:memerelics/evernote-sdk-ruby.git', branch: 'fix_class_variables_toplevel_access'
+gem 'evernote-thrift'
 gem 'slim'
 
 gem 'pry'
