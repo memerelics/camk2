@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def evernote
     return nil unless signed_in?
-    @evernote ||= EvernoteApi.new(current_user) #TODO: production mode.
+    @evernote ||= EvernoteApi.new(current_user)
   end
   helper_method :evernote
 end

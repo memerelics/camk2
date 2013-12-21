@@ -207,7 +207,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   config.omniauth :evernote, $secret.evernote.consumer_key, $secret.evernote.consumer_secret,
-    client_options: { site: 'https://sandbox.evernote.com' }
+    client_options: { site: "https://#{Camk2::Application.config.evernote_host}" }
   #, :scope => 'user,public_repo'
 
   # ==> Warden configuration

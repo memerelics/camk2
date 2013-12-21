@@ -36,4 +36,7 @@ Camk2::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.evernote_host = 'sandbox.evernote.com'
+  # config.evernote_host = 'www.evernote.com'
 end

@@ -8,12 +8,7 @@ class EvernoteApi
 
   def initialize(user, mode=:sandbox)
 
-    evernoteHost = case mode
-                   when :sandbox then "sandbox.evernote.com"
-                   when :production then "www.evernote.com"
-                   end
-
-    userStoreUrl = "https://#{evernoteHost}/edam/user"
+    userStoreUrl = "https://#{Camk2::Application.config.evernote_host}/edam/user"
     userStoreTransport = Thrift::HTTPClientTransport.new(userStoreUrl)
     userStoreProtocol = Thrift::BinaryProtocol.new(userStoreTransport)
     userStore = Evernote::EDAM::UserStore::UserStore::Client.new(userStoreProtocol)

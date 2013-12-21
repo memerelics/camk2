@@ -15,9 +15,6 @@ It's named after Calcium/calmodulin-dependent protein kinase II.
 TODO
 =======================================================
 
-app/controllers/application_controller.rb:
-  * [  7] production mode.
-
 app/models/adapters/livedoor.rb:
   * [  7] adapter先の記事をfetchして逆変換, 改修元ソースを取得できるように
   * [ 48] implement Adapters::Livedoor#resource
