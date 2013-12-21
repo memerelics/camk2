@@ -23,7 +23,7 @@ describe EvernoteApi do
   # newに引数を渡したい時は明示的にsubjectを指定
   # ref: http://blog.davidchelimsky.net/2012/05/13/spec-smell-explicit-use-of-subject/
   describe 'EvernoteApi.new' do
-    subject { EvernoteApi.new(@dummy_user) }
+    subject { EvernoteApi.new(@dummy_user.token) }
 
     # attributes
     it { should respond_to(:notestore) }
