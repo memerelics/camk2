@@ -11,7 +11,7 @@ gem 'sqlite3'
 gem 'devise'
 gem 'oauth'
 gem 'omniauth-evernote'
-gem 'evernote-thrift'
+gem 'evernote_utils', path: "#{ENV['HOME']}/work/evernote_utils/"
 gem 'slim'
 
 gem 'pry'
